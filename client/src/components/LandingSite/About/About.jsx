@@ -2,31 +2,31 @@ import { TeamCard } from "./TeamMember";
 function About() {
 
   const ahad = {
-    name: "Shivam Kumar",
-    designation: "Front-end Engineer",
+    name: "Aditya Raj",
+    designation: "Front-end Developer",
     image:
       "https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png",
   };
   const danish = {
-    name: "Amit Singh",
-    designation: "Backend-end Engineer",
+    name: "Vishal Kumar",
+    designation: "Back-end Developer",
     image:
       "https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png",
   };
   const abubakar = {
-    name: "Anish Kumar",
-    designation: "Front End Developer",
+    name: "Aditya Raj",
+    designation: "Back-end Developer",
     image:
       "https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png",
   };
   const muneeb = {
-    name: "Amarjeet Kumar",
-    designation: "Front End Developer",
+    name: "Vishal Kumar",
+    designation: "Front-end Developer",
     image:
       "https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png",
   };
   const arsal = {
-    name: "Amit Kumar",
+    name: "Aditya Raj",
     designation: "Database",
     image:
       "https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png",

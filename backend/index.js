@@ -12,6 +12,11 @@ app.use(cors());
 
 app.use(express.json({ extended: false }));
 
+// Example route to handle GET /
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/student', require('./routes/studentRoutes'));
 app.use('/api/admin', require('./routes/adminRoutes'));

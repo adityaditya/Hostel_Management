@@ -1,3 +1,53 @@
+# version: '3.8'
+
+# services:
+#   mongo:
+#     image: mongo
+#     container_name: hostel_mongo
+#     restart: always
+#     ports:
+#       - "27017:27017"
+#     volumes:
+#       - mongo-data:/data/db
+
+#   server:
+#     build: ./backend
+#     container_name: hostel_backend
+#     restart: always
+#     ports:
+#       - "3000:3000"
+#     depends_on:
+#       - mongo
+#     environment:
+#       - MONGO_URI=mongodb://mongo:27017/hostel
+#       - JWT_SECRET=Anappleadaykeepsthedoctoraway
+
+#   frontend:
+#     build: ./client
+#     container_name: hostel_frontend
+#     ports:
+#       - "5173:5173"
+#     depends_on:
+#       - server
+#     command: ["npm", "run", "dev", "--", "--host"]
+#     volumes:
+#       - ./client:/app
+#       - /app/node_modules
+#     working_dir: /app
+
+#   # frontend:
+#   #   build: ./client
+#   #   container_name: hostel_frontend
+#   #   ports:
+#   #     - "5173:5173"
+#   #   depends_on:
+#   #     - server
+
+# volumes:
+#   mongo-data:
+
+
+# /* ye naya compose file likhe hai */
 version: '3.8'
 
 services:
@@ -6,29 +56,39 @@ services:
     container_name: hostel_mongo
     restart: always
     ports:
-      - "27017:27017"
+      - "27017:27017"  # Exposing MongoDB port
     volumes:
-      - mongo-data:/data/db
+      - mongo-data:/data/db  # Persist MongoDB data
 
   server:
-    build: ./backend
+    build: ./backend  # Assuming your backend is in the ./backend directory
     container_name: hostel_backend
     restart: always
     ports:
-      - "3000:3000"
+      - "3000:3000"  # Exposing backend API port
     depends_on:
-      - mongo
+      - mongo  # Ensure MongoDB starts first, but may not be fully ready
     environment:
-      - MONGO_URI=mongodb://mongo:27017/hostel
-      - JWT_SECRET=Anappleadaykeepsthedoctoraway
+      - MONGO_URI=mongodb://mongo:27017/hostel  # Backend connects to MongoDB using the service name 'mongo'
+      - JWT_SECRET=Anappleadaykeepsthedoctoraway  # JWT secret for your backend
+    # Optional: Add health check to ensure the backend waits for MongoDB readiness
+    # healthcheck:
+    #   test: ["CMD", "curl", "-f", "http://localhost:3000/health"]  # Add your backend health route
+    #   interval: 30s
+    #   retries: 3
 
   frontend:
-    build: ./client
+    build: ./client  # Assuming your frontend is in the ./client directory
     container_name: hostel_frontend
     ports:
-      - "5173:5173"
+      - "5173:5173"  # Exposing frontend port
     depends_on:
-      - server
+      - server  # Ensure the backend starts first
+    command: ["npm", "run", "dev", "--", "--host"]  # Start the frontend dev server
+    volumes:
+      - ./client:/app  # Bind mount for development, ensure live updates on code changes
+      - /app/node_modules  # To avoid conflicts between host and container node_modules
+    working_dir: /app  # Set the working directory for the frontend
 
 volumes:
-  mongo-data:
+  mongo-data:  # Persist MongoDB data
